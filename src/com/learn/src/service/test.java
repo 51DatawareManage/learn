@@ -27,8 +27,8 @@ public class test extends HttpServlet {
         String value = req.getParameter("username");
         System.out.println(value);
         //向浏览器回写数据
-        req.setAttribute("username",value);
-        resp.sendRedirect("http://localhost:8088/learn/");
+        //req.setAttribute("username",value);
+        resp.sendRedirect("http://localhost:8088/learn/staticpage/login.html");
     }
     public void destroy() {
 
