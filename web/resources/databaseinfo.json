@@ -1,0 +1,10 @@
+{
+  "yangyunxia": {
+      "driver": "com.mysql.jdbc.Driver",
+      "url": "jdbc:mysql://localhost:3306/yangyunxia?characterEncoding=utf8&useSSL=true",
+      "username": "root",
+      "password": "root",
+      "describe": "本地数据库"
+  }
+
+}
