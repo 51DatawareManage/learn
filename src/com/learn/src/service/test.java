@@ -24,11 +24,15 @@ public class test extends HttpServlet {
     public void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("text/html;charset=utf-8");
         // 接收参数
-        String value = req.getParameter("username");
-        System.out.println(value);
+        String phone = req.getParameter("registerUsername");
+        String registerEmail = req.getParameter("registerEmail");
+        String registerPassword = req.getParameter("registerPassword");
+        System.out.println(phone);
+        System.out.println(registerEmail);
+        System.out.println(registerPassword);
         //向浏览器回写数据
         //req.setAttribute("username",value);
-        resp.sendRedirect("http://localhost:8088/learn/staticpage/login.html");
+       // resp.sendRedirect("http://localhost:8088/learn/staticpage/login.html");
     }
     public void destroy() {
 
