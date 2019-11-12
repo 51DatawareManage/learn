@@ -9,7 +9,7 @@ import java.sql.*;
 import java.util.Arrays;
 
 public class DatabaseUtil implements IDatabaseUtil {
-    private final String  databaseinfo="/learn/resource/databaseinfo.json";
+    private final String  databaseinfo="../datas/databaseinfo.json";
     private Logger logger=new Logger();
     private Connection conn=null;
     private Statement pstm=null;
@@ -35,6 +35,7 @@ public class DatabaseUtil implements IDatabaseUtil {
 
     public  DatabaseUtil(String db) {
         JSONObject json=getDatabaseInfo(db);
+        System.out.println(json);
         Connection conn;
         try{
             Class.forName(json.getString("driver"));

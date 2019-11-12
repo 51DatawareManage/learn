@@ -16,7 +16,6 @@ public class Logger implements ILogger {
      * Logger构造方法
      */
     public Logger(){
-        new Logger();
     }
 
     /**
