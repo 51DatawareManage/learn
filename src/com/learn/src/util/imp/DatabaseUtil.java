@@ -6,10 +6,10 @@ import com.learn.src.util.IDatabaseUtil;
 
 import java.io.*;
 import java.sql.*;
-import java.util.HashMap;
+import java.util.Arrays;
 
 public class DatabaseUtil implements IDatabaseUtil {
-    private String   databaseinfo="/learn/resource/databaseinfo.json";
+    private final String  databaseinfo="/learn/resource/databaseinfo.json";
     private Logger logger=new Logger();
     private Connection conn=null;
     private Statement pstm=null;
@@ -18,16 +18,16 @@ public class DatabaseUtil implements IDatabaseUtil {
         try{
             FileReader file=new FileReader(new File(databaseinfo));
             BufferedReader inputStream = new BufferedReader(file);
-            String str="";
+            String str;
             String databaseinfo="";
             while ((str = inputStream.readLine()) != null) {
                 databaseinfo=databaseinfo.concat(str);
             }
             json= JSON.parseObject(JSON.parseObject(databaseinfo).get(db).toString());
         } catch (FileNotFoundException e) {
-            logger.saveLogger("数据库信息加载异常，具体原因如下",e.getStackTrace().toString());
+            logger.saveLogger("数据库信息加载异常，具体原因如下", Arrays.toString(e.getStackTrace()));
         } catch (IOException e) {
-            logger.saveLogger("数据库信息读取失败，具体原因如下",e.getStackTrace().toString());
+            logger.saveLogger("数据库信息读取失败，具体原因如下", Arrays.toString(e.getStackTrace()));
         }
     return json;
     }
@@ -35,16 +35,16 @@ public class DatabaseUtil implements IDatabaseUtil {
 
     public  DatabaseUtil(String db) {
         JSONObject json=getDatabaseInfo(db);
-        Connection conn=null;
+        Connection conn;
         try{
             Class.forName(json.getString("driver"));
             conn=DriverManager.getConnection(json.getString("url"),json.getString("username"),json.getString("password"));
             this.conn=conn;
             this.pstm=conn.createStatement();
         } catch (ClassNotFoundException e) {
-            logger.saveLogger("数据库驱动获取失败",e.getStackTrace().toString());
+            logger.saveLogger("数据库驱动获取失败", Arrays.toString(e.getStackTrace()));
         } catch (SQLException e) {
-            logger.saveLogger("数据库连接获取失败",e.getStackTrace().toString());
+            logger.saveLogger("数据库连接获取失败", Arrays.toString(e.getStackTrace()));
         }
 
     }
@@ -57,7 +57,7 @@ public class DatabaseUtil implements IDatabaseUtil {
         try {
             rs=pstm.executeQuery(sql);
         } catch (SQLException e) {
-            logger.saveLogger("数据库数据查询失败",e.getStackTrace().toString());
+            logger.saveLogger("数据库数据查询失败", Arrays.toString(e.getStackTrace()));
         }
         return rs;
     }
@@ -67,7 +67,7 @@ public class DatabaseUtil implements IDatabaseUtil {
         try {
             rs=pstm.execute(sql);
         } catch (SQLException e) {
-            logger.saveLogger("数据库sql执行失败",e.getStackTrace().toString());
+            logger.saveLogger("数据库sql执行失败", Arrays.toString(e.getStackTrace()));
         }
         return rs;
     }
@@ -77,7 +77,7 @@ public class DatabaseUtil implements IDatabaseUtil {
         try {
             rs=pstm.execute(sql);
         } catch (SQLException e) {
-            logger.saveLogger("数据库sql插入失败",e.getStackTrace().toString());
+            logger.saveLogger("数据库sql插入失败", Arrays.toString(e.getStackTrace()));
         }
         return rs;
     }
@@ -90,7 +90,7 @@ public class DatabaseUtil implements IDatabaseUtil {
                 rs=true;
             }
         } catch (SQLException e) {
-            logger.saveLogger("数据库sql更新失败",e.getStackTrace().toString());
+            logger.saveLogger("数据库sql更新失败", Arrays.toString(e.getStackTrace()));
         }
         return rs;
     }
@@ -100,7 +100,7 @@ public class DatabaseUtil implements IDatabaseUtil {
         try {
             rs=pstm.execute(sql);
         } catch (SQLException e) {
-            logger.saveLogger("数据库sql执行失败",e.getStackTrace().toString());
+            logger.saveLogger("数据库sql执行失败", Arrays.toString(e.getStackTrace()));
         }
         return rs;
     }
@@ -111,7 +111,7 @@ public class DatabaseUtil implements IDatabaseUtil {
             this.pstm.close();
             this.conn.close();
         } catch (SQLException e) {
-            logger.saveLogger("数据库连接关闭失败",e.getStackTrace().toString());
+            logger.saveLogger("数据库连接关闭失败", Arrays.toString(e.getStackTrace()));
             rs=false;
         }
         return rs;

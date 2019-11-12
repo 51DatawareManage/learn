@@ -27,7 +27,7 @@ public class RegisterServlet extends HttpServlet implements IRegisterServlet {
         map.put("registerEmail",req.getParameter("registerEmail"));
         map.put("registerPassword",req.getParameter("registerPassword"));
         map.put("create_time",new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").format(new Date()));
-        new Register(map);
+        boolean result = new Register(map).saveToDatabase();
 
     }
     public void destroy() {
