@@ -1,4 +1,4 @@
-package com.learn.src.service.imp;
+package com.learn.src.controller;
 
 import com.learn.src.service.IRegisterServlet;
 import com.learn.src.service.imp.Register;
@@ -26,8 +26,10 @@ public class RegisterServlet extends HttpServlet implements IRegisterServlet {
         map.put("phone",req.getParameter("registerUsername"));
         map.put("registerEmail",req.getParameter("registerEmail"));
         map.put("registerPassword",req.getParameter("registerPassword"));
-        map.put("create_time",new SimpleDateFormat("yyyy-mm-dd hh:mm:ss").format(new Date()));
-        boolean result = new Register(map).saveToDatabase();
+        map.put("create_time",new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
+        boolean result = Register.doRegister(map);
+        req.getSession().setAttribute("user_info",map);
+        resp.sendRedirect("/");
 
     }
     public void destroy() {

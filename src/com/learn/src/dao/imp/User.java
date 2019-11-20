@@ -1,13 +1,15 @@
-package com.learn.src.dao;
+package com.learn.src.dao.imp;
 
+import com.learn.src.dao.ILearnObject;
 import com.learn.src.util.imp.Logger;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
-public class User {
-    private Map<String,String> map=null;
+public class User extends LearnObject  {
     private Logger logger=new Logger();
+    private Map<String,String> map=new HashMap<String, String>();
     public User(String phone,String registerEmail,String registerPassword,String reg_time){
         try{
             this.map.put("phone",phone);
@@ -53,6 +55,7 @@ public class User {
     public void setRegisterPassword(String registerPassword){
         this.map.put("registerPassword",registerPassword);
     }
+    @Override
     public Map<String,String> getAllKeyValue(){
         return this.map;
     }

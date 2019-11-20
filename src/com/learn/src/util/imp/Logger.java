@@ -26,6 +26,7 @@ public class Logger implements ILogger {
      */
     public boolean saveLogger(String reason, String e) {
         System.out.println(reason);
+        System.out.println(e);
         /**
          * 在此处进行日志处理
          */

@@ -1,6 +1,6 @@
 package com.learn.src.service;
 
-import com.learn.src.dao.User;
+import com.learn.src.dao.imp.User;
 
 public interface IRegister {
     /**
